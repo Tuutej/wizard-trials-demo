@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4mcbdgjop5le"]
+
+[ext_resource type="Script" path="res://scripts/worldgen.gd" id="1_odo28"]
+[ext_resource type="TileSet" uid="uid://b52srj604p1vh" path="res://assets/worldtileset.tres" id="2_uo6w7"]
+
+[node name="Level" type="Node2D" groups=["worldgen"]]
+script = ExtResource("1_odo28")
+
+[node name="World" type="TileMap" parent="."]
+tile_set = ExtResource("2_uo6w7")
+format = 2

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4mcbdgjop5le"]
+
+[ext_resource type="Script" path="res://scripts/worldgen.gd" id="1_odo28"]
+[ext_resource type="Texture2D" uid="uid://c2axuwkjv8mji" path="res://basic tileset.png" id="1_pktlj"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ud7hg"]
+texture = ExtResource("1_pktlj")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+1:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_c6fys"]
+sources/0 = SubResource("TileSetAtlasSource_ud7hg")
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_odo28")
+tile_set = SubResource("TileSet_c6fys")

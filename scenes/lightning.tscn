@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bti0kv5wjjau6"]
+
+[ext_resource type="Script" path="res://scripts/lightning.gd" id="1_dkiph"]
+[ext_resource type="Texture2D" uid="uid://snu0607xd5gt" path="res://assets/spells.png" id="2_jpq4c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6l8kv"]
+size = Vector2(80, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1nmpv"]
+atlas = ExtResource("2_jpq4c")
+region = Rect2(0, 0, 64, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_746ny"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1nmpv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="lightning" type="Area2D"]
+position = Vector2(0, -4)
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_dkiph")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(39, 5)
+shape = SubResource("RectangleShape2D_6l8kv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
+scale = Vector2(1.25, 1)
+sprite_frames = SubResource("SpriteFrames_746ny")
+
+[node name="lightning_audio" type="AudioStreamPlayer2D" parent="."]

@@ -1,0 +1,96 @@
+[gd_scene load_steps=13 format=3 uid="uid://cyyggetohbl0p"]
+
+[ext_resource type="Script" path="res://scripts/enemy_actions.gd" id="1_mnkil"]
+[ext_resource type="Texture2D" uid="uid://d0a36n1o15x77" path="res://assets/character sheet.png" id="2_5daon"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f24yi"]
+atlas = ExtResource("2_5daon")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3b0x"]
+atlas = ExtResource("2_5daon")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yok32"]
+atlas = ExtResource("2_5daon")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2o2cg"]
+atlas = ExtResource("2_5daon")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1lyi"]
+atlas = ExtResource("2_5daon")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prs0f"]
+atlas = ExtResource("2_5daon")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shq5e"]
+atlas = ExtResource("2_5daon")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ihbw0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f24yi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3b0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yok32")
+}],
+"loop": true,
+"name": &"idle_default",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2o2cg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1lyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prs0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shq5e")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ctdd7"]
+radius = 176.518
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i7lha"]
+size = Vector2(10, 12)
+
+[node name="enemy_npc" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_mnkil")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ihbw0")
+animation = &"idle_default"
+
+[node name="detection_area" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("CircleShape2D_ctdd7")
+
+[node name="mob_collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_i7lha")
+
+[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]

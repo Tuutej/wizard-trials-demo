@@ -1,0 +1,36 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b52srj604p1vh"]
+
+[ext_resource type="Texture2D" uid="uid://d01tebr2m6qwg" path="res://assets/basic tileset.png" id="1_3caed"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fygo2"]
+texture = ExtResource("1_3caed")
+0:0/0 = 0
+0:0/0/custom_data_0 = &"Floor_Detailed"
+1:0/0 = 0
+1:0/0/custom_data_0 = &"Wall_Top_Left"
+2:0/0 = 0
+2:0/0/custom_data_0 = &"Wall_Top"
+3:0/0 = 0
+3:0/0/custom_data_0 = &"Wall_Top_Right"
+0:1/0 = 0
+0:1/0/custom_data_0 = &"Wall_Left"
+1:1/0 = 0
+1:1/0/custom_data_0 = &"Wall_Bottom_Left"
+2:1/0 = 0
+2:1/0/custom_data_0 = &"Wall_Bottom"
+3:1/0 = 0
+3:1/0/custom_data_0 = &"Wall_Bottom_Right"
+4:1/0 = 0
+4:1/0/custom_data_0 = &"Wall_Right"
+1:2/0 = 0
+1:2/0/custom_data_0 = &"Floor"
+5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, -8, -8, 8, -8, 8, 8)
+5:0/0/custom_data_0 = &"Wall"
+
+[resource]
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
+custom_data_layer_0/name = "name"
+custom_data_layer_0/type = 21
+sources/0 = SubResource("TileSetAtlasSource_fygo2")

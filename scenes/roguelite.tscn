@@ -1,0 +1,85 @@
+[gd_scene load_steps=14 format=3 uid="uid://b1fh2ddsx2yq5"]
+
+[ext_resource type="PackedScene" uid="uid://b4mcbdgjop5le" path="res://scenes/level.tscn" id="1_7ijcb"]
+[ext_resource type="Script" path="res://scripts/roguelite.gd" id="1_rnqmh"]
+[ext_resource type="PackedScene" uid="uid://dxqpei36ry4vk" path="res://scenes/player.tscn" id="2_qnt4d"]
+[ext_resource type="PackedScene" uid="uid://cpchfaiwuynw4" path="res://scenes/gem_pickup.tscn" id="3_43ulb"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_477tc"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="4_1yuft"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_w1d6a"]
+[ext_resource type="PackedScene" uid="uid://cm7w25yvuf2iu" path="res://scenes/enemy_ranged.tscn" id="7_wmmfy"]
+[ext_resource type="PackedScene" uid="uid://bykil086p32bh" path="res://scenes/game_over_screen.tscn" id="8_3olap"]
+[ext_resource type="Script" path="res://scripts/boss_1_spawner.gd" id="8_ty2ya"]
+[ext_resource type="PackedScene" uid="uid://cgqjfcrg4tsyn" path="res://scenes/1st_boss.tscn" id="9_gxqcd"]
+
+[sub_resource type="Curve2D" id="Curve2D_45cv2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -78, -59, 0, 0, 0, 0, 106, -60, 0, 0, 0, 0, 101, 62, 0, 0, 0, 0, -22.3245, 63.3384, 0, 0, 0, 0, -52.0208, 63.225, 0, 0, 0, 0, -75, 64, 0, 0, 0, 0, -79, -48, 0, 0, 0, 0, -78, -59)
+}
+point_count = 8
+
+[sub_resource type="Resource" id="Resource_8cik3"]
+script = ExtResource("5_w1d6a")
+duration = 1.0
+transition = 0
+ease = 2
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_rnqmh")
+
+[node name="Level" parent="." instance=ExtResource("1_7ijcb")]
+gem_scene = ExtResource("3_43ulb")
+gem_spawn_chance = 0.8
+
+[node name="player" parent="." instance=ExtResource("2_qnt4d")]
+position = Vector2(-1, -2)
+collision_mask = 17
+fireball_damage = 25
+fireball_mana_cost = 20
+iceshard_damage = 8
+lightning_damage = 10
+lightning_mana_cost = 10
+base_xp_to_level_up = 25
+
+[node name="Path2D" type="Path2D" parent="player"]
+position = Vector2(-17, 2)
+scale = Vector2(1.57034, 1.51145)
+curve = SubResource("Curve2D_45cv2")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="player/Path2D"]
+position = Vector2(-78, -59)
+rotation = -0.00543473
+
+[node name="Timer" type="Timer" parent="player"]
+autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+physics_interpolation_mode = 1
+zoom = Vector2(5, 5)
+process_callback = 0
+
+[node name="PhantomCameraHost" type="Node" parent="player/Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("3_477tc")
+
+[node name="GameOverScreen" parent="." instance=ExtResource("8_3olap")]
+
+[node name="boss1_spawner" type="Node2D" parent="."]
+script = ExtResource("8_ty2ya")
+ranged_enemy_scene = ExtResource("7_wmmfy")
+ranged_enemy_spawn_distance = 140.0
+boss_scene = ExtResource("9_gxqcd")
+boss_spawn_level = 8
+
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+top_level = true
+position = Vector2(-1, -2)
+script = ExtResource("4_1yuft")
+follow_mode = 1
+follow_target = NodePath("../player")
+zoom = Vector2(5, 5)
+snap_to_pixel = true
+tween_resource = SubResource("Resource_8cik3")
+
+[connection signal="timeout" from="player/Timer" to="." method="_on_timer_timeout"]

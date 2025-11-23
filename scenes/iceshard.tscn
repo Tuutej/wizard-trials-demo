@@ -1,0 +1,91 @@
+[gd_scene load_steps=11 format=3 uid="uid://bw4w2pl5f0taw"]
+
+[ext_resource type="Script" path="res://scripts/iceshard.gd" id="1_4igc3"]
+[ext_resource type="Texture2D" uid="uid://snu0607xd5gt" path="res://assets/spells.png" id="2_ry77j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_75q28"]
+radius = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7a8l"]
+atlas = ExtResource("2_ry77j")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ktc5"]
+atlas = ExtResource("2_ry77j")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ss8pt"]
+atlas = ExtResource("2_ry77j")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tttxs"]
+atlas = ExtResource("2_ry77j")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58uhs"]
+atlas = ExtResource("2_ry77j")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etwt7"]
+atlas = ExtResource("2_ry77j")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_udfty"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7a8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ktc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ss8pt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tttxs")
+}],
+"loop": false,
+"name": &"iceshard_impact",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58uhs")
+}],
+"loop": true,
+"name": &"iceshard_moving",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etwt7")
+}],
+"loop": true,
+"name": &"iceshard_stationary",
+"speed": 5.0
+}]
+
+[node name="iceshard" type="Area2D"]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_4igc3")
+
+[node name="iceshard_collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_75q28")
+debug_color = Color(0.858447, 0.363227, 0.0445463, 0.42)
+
+[node name="iceshard_projectile" type="AnimatedSprite2D" parent="iceshard_collision"]
+position = Vector2(-1, 0)
+sprite_frames = SubResource("SpriteFrames_udfty")
+animation = &"iceshard_stationary"
+
+[node name="iceshard_lifetime_timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="iceshard_audio" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="iceshard_lifetime_timer" to="." method="_on_fireball_lifetime_timer_timeout"]

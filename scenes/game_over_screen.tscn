@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://bykil086p32bh"]
+
+[ext_resource type="Script" path="res://scripts/game_over_screen.gd" id="1_54k83"]
+
+[node name="GameOverScreen" type="CanvasLayer"]
+script = ExtResource("1_54k83")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 471.0
+offset_top = 271.0
+offset_right = 832.0
+offset_bottom = 414.0
+
+[node name="YOU HAVE PERISHED" type="Label" parent="."]
+offset_left = 574.0
+offset_top = 304.0
+offset_right = 734.0
+offset_bottom = 327.0
+text = "YOU HAVE PERISHED"
+
+[node name="Retry" type="Button" parent="."]
+offset_left = 672.0
+offset_top = 349.0
+offset_right = 764.0
+offset_bottom = 380.0
+text = "TRY AGAIN"
+
+[node name="Give up" type="Button" parent="."]
+offset_left = 536.0
+offset_top = 350.0
+offset_right = 606.0
+offset_bottom = 381.0
+text = "GIVE UP"

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpc8lxxcs3lmh"]
+
+[ext_resource type="Script" path="res://scripts/xp_orb.gd" id="1_23rgw"]
+[ext_resource type="Texture2D" uid="uid://b2j2l5b015c8v" path="res://assets/bar bg.png" id="2_s18rg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3f72"]
+size = Vector2(3, 3)
+
+[node name="XpOrb" type="Area2D"]
+collision_mask = 3
+script = ExtResource("1_23rgw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, 2)
+scale = Vector2(0.0816327, 0.375)
+texture = ExtResource("2_s18rg")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, 3)
+shape = SubResource("RectangleShape2D_y3f72")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

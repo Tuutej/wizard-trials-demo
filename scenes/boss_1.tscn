@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=3 uid="uid://ddk5rtsm208n0"]
+
+[ext_resource type="Script" path="res://scripts/boss_1.gd" id="1_gcfqf"]
+[ext_resource type="Texture2D" uid="uid://bp0io1q0rp6p3" path="res://assets/boss1.png" id="2_l8enm"]
+[ext_resource type="Script" path="res://scripts/state scripts/state_machine.gd" id="3_74mdt"]
+[ext_resource type="Script" path="res://scripts/state scripts/boss_idle.gd" id="4_aabh0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8l5ch"]
+atlas = ExtResource("2_l8enm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3n21k"]
+atlas = ExtResource("2_l8enm")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_br0gb"]
+atlas = ExtResource("2_l8enm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y586w"]
+atlas = ExtResource("2_l8enm")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_st2bj"]
+atlas = ExtResource("2_l8enm")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nta6t"]
+atlas = ExtResource("2_l8enm")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_twq5g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8l5ch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3n21k")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_br0gb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y586w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_st2bj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nta6t")
+}],
+"loop": false,
+"name": &"run",
+"speed": 3.0
+}]
+
+[node name="boss1" type="CharacterBody2D"]
+script = ExtResource("1_gcfqf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_twq5g")
+animation = &"run"
+frame = 3
+frame_progress = 1.0
+
+[node name="state machine" type="Node" parent="."]
+script = ExtResource("3_74mdt")
+
+[node name="boss_idle" type="Node" parent="state machine"]
+script = ExtResource("4_aabh0")

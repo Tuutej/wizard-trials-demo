@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci81jgcd1ss3o"]
+
+[ext_resource type="Script" path="res://scripts/victory_screen.gd" id="1_sc3xr"]
+
+[node name="VictoryScreen" type="CanvasLayer"]
+script = ExtResource("1_sc3xr")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 473.0
+offset_top = 272.0
+offset_right = 834.0
+offset_bottom = 415.0
+
+[node name="You have prevailed" type="Label" parent="."]
+offset_left = 574.0
+offset_top = 304.0
+offset_right = 734.0
+offset_bottom = 327.0
+text = "You have prevailed!"
+
+[node name="RestartButton" type="Button" parent="."]
+offset_left = 672.0
+offset_top = 349.0
+offset_right = 764.0
+offset_bottom = 380.0
+text = "Go Again"
+
+[node name="MainMenu" type="Button" parent="."]
+offset_left = 536.0
+offset_top = 350.0
+offset_right = 606.0
+offset_bottom = 381.0
+text = "Leave Game"

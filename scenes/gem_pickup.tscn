@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpchfaiwuynw4"]
+
+[ext_resource type="Script" path="res://scripts/gem_pickup.gd" id="1_40gd5"]
+[ext_resource type="Texture2D" uid="uid://bemr6j1j26un6" path="res://assets/gem.png" id="2_ts16h"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5iwq7"]
+radius = 4.0
+height = 10.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2shpi"]
+atlas = ExtResource("2_ts16h")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3yff"]
+atlas = ExtResource("2_ts16h")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cqdd"]
+atlas = ExtResource("2_ts16h")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u1c5e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2shpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3yff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cqdd")
+}],
+"loop": true,
+"name": &"gem",
+"speed": 5.0
+}]
+
+[node name="GemPickup" type="Area2D"]
+collision_mask = 3
+script = ExtResource("1_40gd5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_5iwq7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_u1c5e")
+animation = &"gem"
+frame_progress = 0.167145

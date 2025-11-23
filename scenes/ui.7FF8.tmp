@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl1yorulvn6p0"]
+
+[ext_resource type="Script" path="res://scenes/health_bar.gd" id="1_fccuw"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="UIControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="TextureProgressBar" parent="UIControl"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_fccuw")
+
+[node name="ManaBar" type="TextureProgressBar" parent="UIControl"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
