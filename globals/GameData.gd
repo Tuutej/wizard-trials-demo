@@ -9,11 +9,11 @@ var meta_mana_regen_bonus: float = 0.0
 var meta_health_regen_bonus: float = 0.0
 
 const COST := {
-	"hp": 3,
-	"mana": 3,
-	"speed": 3,
-	"mana_regen": 6,
-	"health_regen": 6,
+	"hp": 2,
+	"mana": 2,
+	"speed": 2,
+	"mana_regen": 3,
+	"health_regen": 3,
 }
 
 func add_gems(amount := 1) -> void:
@@ -30,7 +30,7 @@ func buy(stat: String) -> bool:
 		"hp":           meta_hp_bonus += 10
 		"mana":         meta_mana_bonus += 10
 		"speed":        meta_speed_bonus += 10.0
-		"mana_regen":   meta_mana_regen_bonus += 2.0
+		"mana_regen":   meta_mana_regen_bonus += 1.0
 		"health_regen": meta_health_regen_bonus += 0.5
 	return true
 

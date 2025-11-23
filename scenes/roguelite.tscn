@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://b1fh2ddsx2yq5"]
+[gd_scene load_steps=13 format=3 uid="uid://b1fh2ddsx2yq5"]
 
 [ext_resource type="PackedScene" uid="uid://b4mcbdgjop5le" path="res://scenes/level.tscn" id="1_7ijcb"]
 [ext_resource type="Script" path="res://scripts/roguelite.gd" id="1_rnqmh"]
 [ext_resource type="PackedScene" uid="uid://dxqpei36ry4vk" path="res://scenes/player.tscn" id="2_qnt4d"]
-[ext_resource type="PackedScene" uid="uid://cpchfaiwuynw4" path="res://scenes/gem_pickup.tscn" id="3_43ulb"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_477tc"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="4_1yuft"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_w1d6a"]
@@ -28,13 +27,10 @@ ease = 2
 script = ExtResource("1_rnqmh")
 
 [node name="Level" parent="." instance=ExtResource("1_7ijcb")]
-gem_scene = ExtResource("3_43ulb")
-gem_spawn_chance = 0.8
 
 [node name="player" parent="." instance=ExtResource("2_qnt4d")]
 position = Vector2(-1, -2)
 collision_mask = 17
-fireball_damage = 25
 fireball_mana_cost = 20
 iceshard_damage = 8
 lightning_damage = 10
@@ -70,7 +66,6 @@ script = ExtResource("8_ty2ya")
 ranged_enemy_scene = ExtResource("7_wmmfy")
 ranged_enemy_spawn_distance = 140.0
 boss_scene = ExtResource("9_gxqcd")
-boss_spawn_level = 8
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
@@ -81,5 +76,6 @@ follow_target = NodePath("../player")
 zoom = Vector2(5, 5)
 snap_to_pixel = true
 tween_resource = SubResource("Resource_8cik3")
+_preview_noise = false
 
 [connection signal="timeout" from="player/Timer" to="." method="_on_timer_timeout"]

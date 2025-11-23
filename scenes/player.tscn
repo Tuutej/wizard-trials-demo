@@ -125,7 +125,6 @@ value = 50.0
 show_percentage = false
 
 [node name="mana_regen_timer" type="Timer" parent="."]
-wait_time = 1.7
 autostart = true
 
 [connection signal="timeout" from="mana_regen_timer" to="." method="_on_mana_regen_timer_timeout"]

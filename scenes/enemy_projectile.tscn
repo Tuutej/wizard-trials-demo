@@ -48,8 +48,8 @@ animations = [{
 }]
 
 [node name="enemy_projectile" type="Area2D"]
-collision_layer = 16
-collision_mask = 3
+collision_layer = 24
+collision_mask = 7
 script = ExtResource("1_cxnkc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -59,6 +59,8 @@ shape = SubResource("RectangleShape2D_8uck4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
 position = Vector2(0, -0.5)
 sprite_frames = SubResource("SpriteFrames_o1cr0")
+animation = &"impact"
+frame_progress = 0.314142
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

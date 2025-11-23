@@ -7,21 +7,21 @@ class_name Player
 @onready var mana_regen_timer = $mana_regen_timer
 @export var movement_speed : float = 75
 @export var max_health : int = 100
-@export var max_mana : int = 100
+@export var max_mana : int = 200
 @export var mana_regen_amount : int = 10
 
 # fireball
-@export var fireball_damage : int = 10
-@export var fireball_mana_cost : int = 1
+@export var fireball_damage : int = 25
+@export var fireball_mana_cost : int = 15
 
 # iceshard
-@export var iceshard_damage : int = 10
-@export var iceshard_mana_cost : int = 5
+@export var iceshard_damage : int = 15
+@export var iceshard_mana_cost : int = 10
 
 # lightning
 
 @export var lightning_damage : int = 15
-@export var lightning_mana_cost : int = 0
+@export var lightning_mana_cost : int = 15
 
 # xp progression system
 @export var base_xp_to_level_up: int = 10

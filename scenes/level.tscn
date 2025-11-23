@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4mcbdgjop5le"]
+[gd_scene load_steps=4 format=3 uid="uid://b4mcbdgjop5le"]
 
 [ext_resource type="Script" path="res://scripts/worldgen.gd" id="1_odo28"]
+[ext_resource type="PackedScene" uid="uid://cpchfaiwuynw4" path="res://scenes/gem_pickup.tscn" id="2_pkwsp"]
 [ext_resource type="TileSet" uid="uid://b52srj604p1vh" path="res://assets/worldtileset.tres" id="2_uo6w7"]
 
 [node name="Level" type="Node2D" groups=["worldgen"]]
 script = ExtResource("1_odo28")
+gem_scene = ExtResource("2_pkwsp")
+gem_spawn_chance = 0.8
 
 [node name="World" type="TileMap" parent="."]
 tile_set = ExtResource("2_uo6w7")

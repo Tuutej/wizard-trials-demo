@@ -67,7 +67,7 @@ size = Vector2(10, 12)
 
 [node name="ranged_enemy_npc" type="CharacterBody2D" groups=["enemy_ranged"]]
 collision_layer = 4
-collision_mask = 9
+collision_mask = 13
 script = ExtResource("1_obe6u")
 projectile_scene = ExtResource("2_iv2rn")
 

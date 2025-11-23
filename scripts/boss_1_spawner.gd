@@ -2,11 +2,11 @@ extends Node2D
 
 @export var ranged_enemy_scene: PackedScene
 @export var ranged_enemy_spawn_distance: float = 180.0
-@export var ranged_enemy_spawn_level: int = 3
+@export var ranged_enemy_spawn_level: int = 4
 
 @export var boss_scene: PackedScene
 @export var boss_spawn_distance: float = 200.0
-@export var boss_spawn_level: int = 1
+@export var boss_spawn_level: int = 10
 
 var player: Node2D
 var boss_instance: Node2D = null

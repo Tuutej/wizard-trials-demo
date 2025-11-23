@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var damage: int = 20
+@export var damage: int = 15
 @export var lifetime: float = 0.15
 @onready var lightning_audio: AudioStreamPlayer2D = $lightning_audio
 

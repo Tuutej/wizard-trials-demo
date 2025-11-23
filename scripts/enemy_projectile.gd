@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var lifetime: float = 3.0
+@export var lifetime: float = 6.0
 var velocity: Vector2 = Vector2.ZERO
 var damage: int = 1
 
@@ -19,16 +19,23 @@ func _ready() -> void:
 	await get_tree().create_timer(lifetime).timeout
 	queue_free()
 
+
 func _physics_process(delta: float) -> void:
 	global_position += velocity * delta
 
+
 func _on_body_entered(body: Node) -> void:
-	if not (body.is_in_group("Player") and body.has_method("take_damage")):
+	if body.is_in_group("enemy_ranged"):
 		return
 
-	# deal damage once
-	body.take_damage(damage)
+	# If it's the player, apply damage
+	if body.is_in_group("player") and body.has_method("take_damage"):
+		body.take_damage(damage)
 
+	_do_impact_and_die()
+
+
+func _do_impact_and_die() -> void:
 	# stop moving & colliding
 	collision_shape.set_deferred("disabled", true)
 	set_physics_process(false)
@@ -38,6 +45,7 @@ func _on_body_entered(body: Node) -> void:
 		sprite.animation = "impact"
 		sprite.play()
 		await sprite.animation_finished
+
 	queue_free()
 
 

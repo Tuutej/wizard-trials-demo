@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed: float = 40.0
+@export var speed: float = 35.0
 @export var max_health: int = 40
 @export var contact_damage: int = 8                 # melee dmg
 @export var shoot_damage: int = 6
@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var shoot_range: float = 280.0
 @export var keep_distance: float = 200.0             # kite around this distance
 @export var projectile_scene: PackedScene
-@export var projectile_speed: float = 260.0
+@export var projectile_speed: float = 100.0
 @export var projectile_spread_deg: float = 6.0       # little inaccuracy
 
 var health: int
